@@ -1,0 +1,24 @@
+# AI Content Humanizer Frontend
+
+This is a single-page web application that serves as a frontend for an **n8n AI Agent**. It takes AI-generated text as input, sends it to an n8n webhook, and displays the "humanized" result.
+
+## 🚀 Features
+- **Clean UI:** Modern, responsive design using Inter font and gradients.
+- **Session Tracking:** Automatically generates unique Session IDs for n8n memory.
+- **Status Indicators:** Loading, success, and error states.
+- **Keyboard Shortcut:** Supports `Ctrl + Enter` to submit.
+
+## 🛠️ Configuration Guide
+
+### 1. n8n Workflow Setup
+To make this frontend work, you need an n8n workflow with a **Webhook** node.
+1. Create a **Webhook** node in n8n.
+2. Set the HTTP Method to **POST**.
+3. **Important:** In the Webhook node settings, enable **CORS (Cross-Origin Resource Sharing)**. If you don't do this, the browser will block the request. 
+   - *Allowed Origins:* `*` (or your specific domain).
+
+### 2. Updating the Webhook URL
+In the `index.html` file, locate the `fetch` function inside the `<script>` tag (around line 345):
+
+```javascript
+const response = await fetch('[https://your-n8n-instance.com/webhook/your-id](https://your-n8n-instance.com/webhook/your-id)', { ...
